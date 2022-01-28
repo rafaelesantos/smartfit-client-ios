@@ -13,7 +13,7 @@ struct Smart_Client_FitApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
