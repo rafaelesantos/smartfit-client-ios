@@ -17,7 +17,8 @@ struct UserInfoView: View {
         "Contato",
         "Gênero",
         "Plano",
-        "Valor do Plano"
+        "Valor do Plano",
+        "Unidade"
     ]
     
     var infosImages: [String] = [
@@ -26,7 +27,8 @@ struct UserInfoView: View {
         "iphone",
         "figure.stand.line.dotted.figure.stand",
         "creditcard.fill",
-        "dollarsign.square.fill"
+        "dollarsign.square.fill",
+        "mappin.and.ellipse"
     ]
     
     var userInfos: [String] {
@@ -36,7 +38,8 @@ struct UserInfoView: View {
             ((self.user.personal?.phone?.area ?? "") + (self.user.personal?.phone?.number ?? "")),
             self.user.personal?.personal_group?.gender ?? "Sem gênero",
             self.user.purchase?.plan?.name ?? "Sem plano",
-            "R$ " + (self.user.purchase?.membership_price ?? "R$ ??,??").replacingOccurrences(of: ".", with: ",")
+            "R$ " + (String(format: "%.2f", Double(self.user.purchase?.membership_price ?? "0") ?? 0)).replacingOccurrences(of: ".", with: ","),
+            self.user.location?.name ?? "Sem unidade"
         ]
     }
     
@@ -48,7 +51,7 @@ struct UserInfoView: View {
                     
                     HStack {
                         Group {
-                            Image(systemName: infosImages[item])
+                            //Image(systemName: infosImages[item])
                             Text(infos[item])
                         }
                         .foregroundColor(Color.accentColor)

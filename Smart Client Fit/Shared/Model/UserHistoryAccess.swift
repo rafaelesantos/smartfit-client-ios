@@ -36,5 +36,12 @@ struct UserHistoryAccess: Codable {
             }
         }
     }
+    
+    func save(on reference: DataManager.Reference) throws -> Self {
+        let defaultEncoded = try self.encoded
+        try DataManager.shared.defaults.set(defaultEncoded, forKey: reference.value)
+        try DataManager.shared.defaults.synchronize()
+        return self
+    }
 }
 

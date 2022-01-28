@@ -53,4 +53,25 @@ struct UserPayment: Codable, Identifiable {
         let type: String?
         let siteRpsPath: String?
     }
+    
+    func save(on reference: DataManager.Reference) throws -> Self {
+        let defaultEncoded = try self.encoded
+        try DataManager.shared.defaults.set(defaultEncoded, forKey: reference.value)
+        try DataManager.shared.defaults.synchronize()
+        return self
+    }
+}
+
+extension Array where Element == UserPayment.OpenInstallments {
+    var total: Double {
+        let values: [Double] = self.map({ Double($0.value ?? "0") ?? 0 })
+        return values.reduce(0, +)
+    }
+}
+
+extension Array where Element == UserPayment.PaidInstallments {
+    var total: Double {
+        let values: [Double] = self.map({ Double($0.value ?? "0") ?? 0 })
+        return values.reduce(0, +)
+    }
 }

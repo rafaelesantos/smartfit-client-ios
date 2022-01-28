@@ -17,6 +17,7 @@ class LoginViewModel: ObservableObject {
     
     init() {
         self.webservice = Webservice()
+        self.users = (try? DataManager.shared.get(on: .users, [User].self)) ?? []
     }
     
     func postLogin(completion: @escaping () -> ()) {
@@ -26,11 +27,8 @@ class LoginViewModel: ObservableObject {
                     self.webservice.getUser(secret: secret) { user in
                         if let user = user {
                             if self.users.isEmpty == true { self.users = [user] }
-                            else if self.users.contains(where: {
-                                $0.personal?.id == user.personal?.id &&
-                                $0.personal?.id != nil &&
-                                user.personal?.id != nil
-                            }) { self.users.append(user) }
+                            else if self.users.contains(where: { $0.personal?.id == user.personal?.id }) == false { self.users.append(user) }
+                            try? self.users.save(on: .users)
                             completion()
                         }
                     }

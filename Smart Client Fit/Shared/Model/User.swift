@@ -112,6 +112,13 @@ struct User: Codable, Identifiable {
         let payment_company_active: Bool?
         let payment_company_method: String?
     }
+    
+    func save(on reference: DataManager.Reference) throws -> Self {
+        let defaultEncoded = try self.encoded
+        try DataManager.shared.defaults.set(defaultEncoded, forKey: reference.value)
+        try DataManager.shared.defaults.synchronize()
+        return self
+    }
 }
 
 extension User {
@@ -119,5 +126,15 @@ extension User {
         let firstName: String = self.personal?.name?.components(separatedBy: " ").first ?? ""
         let lastName: String = self.personal?.name?.components(separatedBy: " ").last ?? ""
         return firstName + " " + lastName
+    }
+}
+
+extension Array where Element == User {
+    @discardableResult
+    func save(on reference: DataManager.Reference) throws -> Self {
+        let defaultEncoded = try self.encoded
+        try DataManager.shared.defaults.set(defaultEncoded, forKey: reference.value)
+        try DataManager.shared.defaults.synchronize()
+        return self
     }
 }

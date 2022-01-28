@@ -17,17 +17,21 @@ struct UserHistoryAccessView: View {
                 ForEach(0 ..< (userHistoryAccess.data?.count ?? 0), id: \.self) { item in
                     Divider().padding(.vertical, 2)
                     
-                    HStack {
+                    HStack() {
                         Group {
-                            Image(systemName: "person.crop.circle.badge.clock")
+                            Text((userHistoryAccess.data?[item].attributes?.createdAt ?? "").formatted(on: "yyyy-MM-dd-HH:mm", with: "HH:mm"))
+                                .bold()
+                                .font(.footnote)
                         }
-                        .foregroundColor(Color.accentColor)
-                        .font(Font.system(.body).bold())
                         
-                        Spacer(minLength: 25)
+                        .frame(width: 50, height: 30, alignment: .center)
+                        .background(Color.accentColor.opacity(0.2))
+                        .cornerRadius(5)
                         
-                        Text(((userHistoryAccess.data?[item].attributes?.createdAt ?? "").formatted(on: "yyyy-MM-dd-HH:mm", with: "EEEE, dd MMMM yyyy // HH:mm")).replacingOccurrences(of: "//", with: "às"))
-                            .multilineTextAlignment(.trailing)
+                        Spacer(minLength: 10)
+                        
+                        Text(((userHistoryAccess.data?[item].attributes?.createdAt ?? "").formatted(on: "yyyy-MM-dd-HH:mm", with: "EEEE, dd MMMM yyyy")))
+                            .font(.footnote)
                     }
                 }
             }.foregroundColor(.primary)

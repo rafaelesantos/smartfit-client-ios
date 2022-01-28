@@ -43,6 +43,9 @@
 		4CCC227427A3CB6800D5232E /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC227327A3CB6800D5232E /* UserViewModel.swift */; };
 		4CCC227627A3D42500D5232E /* UserHistoryAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC227527A3D42500D5232E /* UserHistoryAccessView.swift */; };
 		4CCC227827A3D5B700D5232E /* UserPaymentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC227727A3D5B700D5232E /* UserPaymentsView.swift */; };
+		4CCC227A27A436C700D5232E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC227927A436C700D5232E /* DataManager.swift */; };
+		4CCC227C27A441DC00D5232E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC227B27A441DC00D5232E /* CardView.swift */; };
+		4CCC227E27A4423200D5232E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC227D27A4423200D5232E /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +102,9 @@
 		4CCC227327A3CB6800D5232E /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		4CCC227527A3D42500D5232E /* UserHistoryAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHistoryAccessView.swift; sourceTree = "<group>"; };
 		4CCC227727A3D5B700D5232E /* UserPaymentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPaymentsView.swift; sourceTree = "<group>"; };
+		4CCC227927A436C700D5232E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		4CCC227B27A441DC00D5232E /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		4CCC227D27A4423200D5232E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +224,7 @@
 				4CCC227127A3B1DF00D5232E /* UserInfoView.swift */,
 				4CCC227527A3D42500D5232E /* UserHistoryAccessView.swift */,
 				4CCC227727A3D5B700D5232E /* UserPaymentsView.swift */,
+				4CCC227B27A441DC00D5232E /* CardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -227,6 +234,7 @@
 			children = (
 				4CCC226327A37E5F00D5232E /* BaseModel.swift */,
 				4CCC226527A37EA900D5232E /* CoreDataManager.swift */,
+				4CCC227927A436C700D5232E /* DataManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -241,6 +249,7 @@
 				4CCC226927A3AA8E00D5232E /* UserPayment.swift */,
 				4CCC226B27A3AB7C00D5232E /* UserHistoryAccess.swift */,
 				4CCC226D27A3AE8900D5232E /* Locations.swift */,
+				4CCC227D27A4423200D5232E /* Card.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -443,6 +452,7 @@
 				4CCC227627A3D42500D5232E /* UserHistoryAccessView.swift in Sources */,
 				4CCC226827A3AA4D00D5232E /* UserView.swift in Sources */,
 				4CCC226427A37E6000D5232E /* BaseModel.swift in Sources */,
+				4CCC227C27A441DC00D5232E /* CardView.swift in Sources */,
 				4CCC226C27A3AB7C00D5232E /* UserHistoryAccess.swift in Sources */,
 				4CCC225527A365EF00D5232E /* LoginViewModel.swift in Sources */,
 				4CCC224027A347CE00D5232E /* LoginView.swift in Sources */,
@@ -451,9 +461,11 @@
 				4CCC225827A36E8900D5232E /* Application+Extension.swift in Sources */,
 				4CCC222727A3339200D5232E /* ContentView.swift in Sources */,
 				4CCC224727A3548000D5232E /* UserRowView.swift in Sources */,
+				4CCC227E27A4423200D5232E /* Card.swift in Sources */,
 				4CCC224C27A358D400D5232E /* Webservice.swift in Sources */,
 				4CCC226A27A3AA8E00D5232E /* UserPayment.swift in Sources */,
 				4CCC225227A35D1700D5232E /* UserSession.swift in Sources */,
+				4CCC227A27A436C700D5232E /* DataManager.swift in Sources */,
 				4CCC224327A34A7500D5232E /* AboutAppLabelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

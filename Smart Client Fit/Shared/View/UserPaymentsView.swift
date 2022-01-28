@@ -24,14 +24,14 @@ struct UserPaymentView: View {
                         HStack {
                             Group {
                                 Image(systemName: "dollarsign.square.fill")
-                                Text("R$ \(open?.value?.replacingOccurrences(of: ".", with: ",") ?? "")")
+                                Text("R$ \(String(format: "%.2f", Double(open?.value ?? "0") ?? 0).replacingOccurrences(of: ".", with: ","))")
                             }
                             .foregroundColor(Color.orange)
                             .font(Font.system(.body).bold())
                             
                             Spacer(minLength: 25)
                             
-                            Text("\(open?.dueDate?.formatted(on: "yyyy-MM-dd", with: "MMMM dd") ?? "")")
+                            Text("\(open?.dueDate?.formatted(on: "yyyy-MM-dd", with: "MMMM dd, yyyy") ?? "")")
                                 .multilineTextAlignment(.trailing)
                         }
                     }
@@ -45,14 +45,14 @@ struct UserPaymentView: View {
                         HStack {
                             Group {
                                 Image(systemName: "dollarsign.square.fill")
-                                Text("R$ \(paid?.value?.replacingOccurrences(of: ".", with: ",") ?? "")")
+                                Text("R$ \(String(format: "%.2f", Double(paid?.value ?? "0") ?? 0).replacingOccurrences(of: ".", with: ","))")
                             }
                             .foregroundColor(Color.green)
                             .font(Font.system(.body).bold())
                             
                             Spacer(minLength: 25)
                             
-                            Text("\(paid?.dueDate?.formatted(on: "yyyy-MM-dd", with: "MMMM dd") ?? "")")
+                            Text("\(paid?.dueDate?.formatted(on: "yyyy-MM-dd", with: "MMMM dd, yyyy") ?? "")")
                                 .multilineTextAlignment(.trailing)
                         }
                     }
