@@ -14,6 +14,7 @@ struct MapLocation: Codable, Identifiable {
     var address: String
     var latitude: Double
     var longitude: Double
+    var count: Int
     
     func save(on reference: DataManager.Reference) throws -> Self {
         let defaultEncoded = try self.encoded

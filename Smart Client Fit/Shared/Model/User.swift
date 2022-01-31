@@ -129,8 +129,7 @@ extension User {
     }
 }
 
-extension Array where Element == User {
-    @discardableResult
+extension Array where Element == UserLogin {
     func save(on reference: DataManager.Reference) throws -> Self {
         let defaultEncoded = try self.encoded
         try DataManager.shared.defaults.set(defaultEncoded, forKey: reference.value)

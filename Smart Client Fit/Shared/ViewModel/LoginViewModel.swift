@@ -14,11 +14,11 @@ class LoginViewModel: ObservableObject {
     
     private var webservice: Webservice
     
-    @Published var users: [User] = []
+    @Published var users: [UserLogin] = []
     
     init() {
         self.webservice = Webservice()
-        self.users = ((try? DataManager.shared.get(on: .users, [User].self)) ?? []).reversed()
+        self.users = ((try? DataManager.shared.get(on: .users, [UserLogin].self)) ?? []).reversed()
     }
     
     func postLogin(completion: @escaping () -> ()) {
@@ -26,9 +26,22 @@ class LoginViewModel: ObservableObject {
             self.webservice.postLogin(secret: secret, login: self.login, password: self.password) { loginResponse in
                 if loginResponse?.isLogged == true {
                     self.webservice.getUser(secret: secret) { user in
-                        if let user = user {
-                            if self.users.isEmpty == true { self.users = [user] }
-                            else if self.users.contains(where: { $0.personal?.id == user.personal?.id }) == false { self.users.append(user) }
+                        if let user = user,
+                           let userID = user.personal?.id,
+                           let location = user.location?.name,
+                           let plan = user.plan?.name,
+                           let isActive = user.plan?.status == "active" ? true : false {
+                            let userLogin = UserLogin(
+                                login: self.login,
+                                password: self.password,
+                                name: user.presentedName,
+                                userID: userID,
+                                location: location,
+                                plan: plan,
+                                isActive: isActive
+                            )
+                            if self.users.isEmpty == true { self.users = [userLogin] }
+                            else if self.users.contains(where: { $0.userID == user.personal?.id }) == false { self.users.append(userLogin) }
                             _ = try? self.users.save(on: .users)
                             completion()
                         }

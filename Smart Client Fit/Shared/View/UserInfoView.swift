@@ -32,10 +32,12 @@ struct UserInfoView: View {
     ]
     
     var userInfos: [String] {
+        let cpfVeil = Veil(pattern: "###.###.###-##")
+        let cellPhoneVeil = Veil(pattern: "(##) # ####-####")
         return [
             self.user.personal?.email ?? "Sem e-mail",
-            self.user.personal?.personal_group?.document ?? "Sem documento",
-            ((self.user.personal?.phone?.area ?? "") + (self.user.personal?.phone?.number ?? "")),
+            cpfVeil.mask(input: self.user.personal?.personal_group?.document ?? "Sem documento"),
+            cellPhoneVeil.mask(input: ((self.user.personal?.phone?.area ?? "") + (self.user.personal?.phone?.number ?? ""))),
             self.user.personal?.personal_group?.gender ?? "Sem gênero",
             self.user.purchase?.plan?.name ?? "Sem plano",
             "R$ " + (String(format: "%.2f", Double(self.user.purchase?.membership_price ?? "0") ?? 0)).replacingOccurrences(of: ".", with: ","),

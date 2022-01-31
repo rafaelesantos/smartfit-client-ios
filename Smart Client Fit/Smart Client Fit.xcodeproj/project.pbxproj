@@ -10,6 +10,8 @@
 		4C7A028527A787A100F815FA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A028427A787A100F815FA /* MapView.swift */; };
 		4C7A028727A78A1500F815FA /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A028627A78A1500F815FA /* MapAnnotationView.swift */; };
 		4C7A028927A78B4F00F815FA /* MapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A028827A78B4F00F815FA /* MapLocation.swift */; };
+		4C7A028B27A8351700F815FA /* Veil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A028A27A8351700F815FA /* Veil.swift */; };
+		4C7A028D27A8386700F815FA /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A028C27A8386700F815FA /* UserLogin.swift */; };
 		4CCC221427A3339200D5232E /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC221327A3339200D5232E /* Tests_iOS.swift */; };
 		4CCC221627A3339200D5232E /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC221527A3339200D5232E /* Tests_iOSLaunchTests.swift */; };
 		4CCC222027A3339200D5232E /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC221F27A3339200D5232E /* Tests_macOS.swift */; };
@@ -72,6 +74,8 @@
 		4C7A028427A787A100F815FA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		4C7A028627A78A1500F815FA /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
 		4C7A028827A78B4F00F815FA /* MapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocation.swift; sourceTree = "<group>"; };
+		4C7A028A27A8351700F815FA /* Veil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Veil.swift; sourceTree = "<group>"; };
+		4C7A028C27A8386700F815FA /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
 		4CCC21F927A3337F00D5232E /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		4CCC21FA27A3337F00D5232E /* Smart_Client_FitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Smart_Client_FitApp.swift; sourceTree = "<group>"; };
 		4CCC21FB27A3337F00D5232E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 				4CCC226D27A3AE8900D5232E /* Locations.swift */,
 				4CCC227D27A4423200D5232E /* Card.swift */,
 				4C7A028827A78B4F00F815FA /* MapLocation.swift */,
+				4C7A028C27A8386700F815FA /* UserLogin.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 			children = (
 				4CCC225727A36E8900D5232E /* Application+Extension.swift */,
 				4CCC226F27A3AF9700D5232E /* Date+Extensions.swift */,
+				4C7A028A27A8351700F815FA /* Veil.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -461,6 +467,7 @@
 				4CCC222927A3339200D5232E /* Persistence.swift in Sources */,
 				4CCC222327A3339200D5232E /* Smart_Client_Fit.xcdatamodeld in Sources */,
 				4CCC227627A3D42500D5232E /* UserHistoryAccessView.swift in Sources */,
+				4C7A028D27A8386700F815FA /* UserLogin.swift in Sources */,
 				4CCC226827A3AA4D00D5232E /* UserView.swift in Sources */,
 				4CCC226427A37E6000D5232E /* BaseModel.swift in Sources */,
 				4CCC227C27A441DC00D5232E /* CardView.swift in Sources */,
@@ -469,6 +476,7 @@
 				4CCC224027A347CE00D5232E /* LoginView.swift in Sources */,
 				4C7A028727A78A1500F815FA /* MapAnnotationView.swift in Sources */,
 				4CCC224927A3586000D5232E /* User.swift in Sources */,
+				4C7A028B27A8351700F815FA /* Veil.swift in Sources */,
 				4CCC227827A3D5B700D5232E /* UserPaymentsView.swift in Sources */,
 				4CCC225827A36E8900D5232E /* Application+Extension.swift in Sources */,
 				4CCC222727A3339200D5232E /* ContentView.swift in Sources */,

@@ -10,32 +10,59 @@ import SwiftUI
 struct UserRowView: View {
     // MARK: - PROPERTIES
     
-    var user: User?
+    var user: UserLogin?
     
     // MARK: - BODY
     
     var body: some View {
-        if let name = user?.personal?.name,
-           let email = user?.personal?.email,
-           let plan = user?.plan?.name {
+        if let name = user?.name,
+           let login = user?.login,
+           let location = user?.location,
+           let plan = user?.plan,
+           let isActive = user?.isActive {
             VStack(alignment: .center, spacing: 10) {
                 HStack(alignment: .center, spacing: 15) {
-                    Image(systemName: "person.crop.circle")
-                        .resizable()
-                        .frame(width: 50, height: 50)
                     HStack(alignment: .center, spacing: 25) {
                         VStack(alignment: .leading, spacing: 5) {
-                            Text(name)
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .foregroundColor(.primary)
+                            HStack {
+                                Text(name)
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                if isActive == false {
+                                    Image(systemName: "creditcard.trianglebadge.exclamationmark")
+                                        .foregroundColor(.red)
+                                } else if plan.lowercased() == "black" {
+                                    Image(systemName: "crown.fill")
+                                        .foregroundColor(.accentColor)
+                                }
+                            }
                             
-                            Text("Email: \(email)\nPlano Vigente: \(plan)")
-                                .font(.footnote)
-                                .foregroundColor(Color.secondary)
-                                .multilineTextAlignment(.leading)
+                            Divider().padding(.vertical, 4)
+                            VStack {
+                                HStack {
+                                    Text("Login ")
+                                        .font(.footnote)
+                                        .foregroundColor(.accentColor)
+                                        .bold()
+                                    Spacer()
+                                    Text(Veil(pattern: "###.###.###-##").mask(input: login))
+                                        .font(.footnote)
+                                        .foregroundColor(.secondary)
+                                }
+                                HStack {
+                                    Text("Unidade ")
+                                        .font(.footnote)
+                                        .foregroundColor(.accentColor)
+                                        .bold()
+                                    Spacer()
+                                    Text(location)
+                                        .font(.footnote)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
                         }
-                        //Image(systemName: user?.purchase?.plan?.name == "Black" ? "crown.fill" : "bandage.fill")
                     }
                 }
             }

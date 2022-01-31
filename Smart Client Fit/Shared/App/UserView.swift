@@ -50,8 +50,8 @@ struct UserView: View {
                             .padding(.bottom, 15)
                         
                         if isCardTapped {
-                            
                             if let userPayment = self.userViewModel.payment {
+                                Divider().padding(.vertical, 4)
                                 HStack(alignment: .center, spacing: 15) {
                                     Text("Total de pagamentos já realizados")
                                     Text("R$ \(String(format: "%.2f", self.userViewModel.payment?.paidInstallments?.total ?? 0).replacingOccurrences(of: ".", with: ","))")
@@ -96,5 +96,6 @@ struct UserView: View {
                 try? DataManager.shared.remove(on: .userPayment(userID))
             }
         }
+        .navigationTitle(self.userViewModel.user?.presentedName ?? "")
     }
 }

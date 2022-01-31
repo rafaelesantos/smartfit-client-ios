@@ -23,6 +23,7 @@ struct MapView: View {
     var locations: [MapLocation]
     @State var name: String = "Selecione uma academia"
     @State var hour: String = "Horário"
+    @State var count: String = ""
     
     // MARK: - BODY
     
@@ -32,6 +33,7 @@ struct MapView: View {
                 MapAnnotationView(hour: item.hour, locationName: item.name).onTapGesture {
                     self.name = item.name
                     self.hour = item.hour
+                    self.count = "\(item.count)"
                 }
             }
         })
@@ -58,6 +60,11 @@ struct MapView: View {
                             Text("\(name)")
                                 .font(.system(size: 15))
                                 .foregroundColor(.white)
+                            Text("\(count)")
+                                .font(.system(size: 15))
+                                .fontWeight(.bold)
+                                .foregroundColor(.accentColor)
+                            
                         }
                     }
                 } //: HSTACK

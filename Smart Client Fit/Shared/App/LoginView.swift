@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @ObservedObject private var loginViewModel = LoginViewModel()
-    @State private var isPresented = false
+    @State private var isPresented: Bool? = nil
     
     var body: some View {
         NavigationView {
@@ -36,13 +36,14 @@ struct LoginView: View {
                         Group {
                             TextFieldRowView(name: "CPF", textContentType: .username, value: self.$loginViewModel.login)
                             TextFieldRowView(name: "Senha", textContentType: .password, value: self.$loginViewModel.password)
-                            Button("ACESSAR") {
-                                self.loginViewModel.postLogin { self.isPresented.toggle() }
+                            NavigationLink(destination: UserView(), tag: true, selection: self.$isPresented) {
+                                Button("ACESSAR") {
+                                    self.loginViewModel.postLogin { self.isPresented = true }
+                                }
+                                .font(.system(size: 15, weight: .bold, design: .default))
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color.clear)
                             }
-                            .font(.system(size: 15, weight: .bold, design: .default))
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color.clear)
-                            
                         }
                         .padding()
                         .background(
@@ -60,10 +61,12 @@ struct LoginView: View {
                         } else {
                             Group {
                                 ForEach(self.loginViewModel.users) { user in
-                                    NavigationLink(destination: UserView().navigationTitle(Text(user.presentedName))) {
-                                        UserRowView(user: user)
-                                            .padding(.all, 4)
-                                    }
+                                    UserRowView(user: user)
+                                        .padding(.all, 4)
+                                        .onTapGesture {
+                                            self.loginViewModel.login = user.login
+                                            self.loginViewModel.password = user.password
+                                        }
                                     
                                 }
                             }

@@ -73,7 +73,7 @@ class UserViewModel: ObservableObject {
             geoCoder.geocodeAddressString(address + ", " + cityName) { (placemarks, error) in
                 if let placemarks = placemarks,
                    let location = placemarks.first?.location {
-                    self.currentLocation = MapLocation(hour: "", name: currentLocation.attributes?.name ?? "", address: currentLocation.attributes?.address ?? "", latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                    self.currentLocation = MapLocation(hour: "", name: currentLocation.attributes?.name ?? "", address: currentLocation.attributes?.address ?? "", latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, count: 0)
                     _ = try? self.currentLocation?.save(on: .currentLocation)
                     _ = try? self.locations?.save(on: .locations)
                     self.getMapLocations()
@@ -92,7 +92,7 @@ class UserViewModel: ObservableObject {
                     geoCoder.geocodeAddressString(address + ", " + cityName) { (placemarks, error) in
                         if let placemarks = placemarks,
                            let location = placemarks.first?.location {
-                            self.currentLocation = MapLocation(hour: "", name: currentLocation.attributes?.name ?? "", address: currentLocation.attributes?.address ?? "", latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                            self.currentLocation = MapLocation(hour: "", name: currentLocation.attributes?.name ?? "", address: currentLocation.attributes?.address ?? "", latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, count: 0)
                             _ = try? self.currentLocation?.save(on: .currentLocation)
                             _ = try? self.locations?.save(on: .locations)
                             self.getMapLocations()
@@ -113,10 +113,11 @@ class UserViewModel: ObservableObject {
                    return "\(historyData.attributes?.locationId ?? -1)" == locationData.id
                }) ?? false
            }).map({ locationData -> MapLocation in
-               let historyAccessData = historyAccess.data?.first(where: { historyData in
+               let historyAccessData = historyAccess.data?.filter({ historyData in
                    return "\(historyData.attributes?.locationId ?? -1)" == locationData.id
                })
-               return MapLocation(hour: historyAccessData?.attributes?.createdAt?.formatted(on: "yyyy-MM-dd-HH:mm", with: "HH:mm") ?? "", name: locationData.attributes?.name ?? "", address: (locationData.attributes?.address ?? "") + ", " + (locationData.attributes?.cityName ?? ""), latitude: 0, longitude: 0)
+               
+               return MapLocation(hour: historyAccessData?.first?.attributes?.createdAt?.formatted(on: "yyyy-MM-dd-HH:mm", with: "HH:mm") ?? "", name: locationData.attributes?.name ?? "", address: (locationData.attributes?.address ?? "") + ", " + (locationData.attributes?.cityName ?? ""), latitude: 0, longitude: 0, count: historyAccessData?.count ?? 0)
            }) {
             self.addressToCoordinate(mapLocationsData: locationDataAttributes, index: 0)
         }
@@ -130,9 +131,9 @@ class UserViewModel: ObservableObject {
                    let location = placemarks.first?.location {
                     let mpLocData = mapLocationsData[index]
                     if self.mapLocations.isEmpty == false {
-                        self.mapLocations.append(MapLocation(hour: mpLocData.hour, name: mpLocData.name, address: mpLocData.address, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+                        self.mapLocations.append(MapLocation(hour: mpLocData.hour, name: mpLocData.name, address: mpLocData.address, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, count: mpLocData.count))
                     } else {
-                        self.mapLocations = [MapLocation(hour: mpLocData.hour, name: mpLocData.name, address: mpLocData.address, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)]
+                        self.mapLocations = [MapLocation(hour: mpLocData.hour, name: mpLocData.name, address: mpLocData.address, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, count: mpLocData.count)]
                     }
                 }
                 self.addressToCoordinate(mapLocationsData: mapLocationsData, index: index + 1)
