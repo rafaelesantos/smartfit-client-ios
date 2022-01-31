@@ -38,7 +38,11 @@ struct LoginView: View {
                             TextFieldRowView(name: "Senha", textContentType: .password, value: self.$loginViewModel.password)
                             NavigationLink(destination: UserView(), tag: true, selection: self.$isPresented) {
                                 Button("ACESSAR") {
-                                    self.loginViewModel.postLogin { self.isPresented = true }
+                                    self.loginViewModel.postLogin {
+                                        self.loginViewModel.login = ""
+                                        self.loginViewModel.password = ""
+                                        self.isPresented = true
+                                    }
                                 }
                                 .font(.system(size: 15, weight: .bold, design: .default))
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)

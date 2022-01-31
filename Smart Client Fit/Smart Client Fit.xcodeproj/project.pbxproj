@@ -76,6 +76,7 @@
 		4C7A028827A78B4F00F815FA /* MapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocation.swift; sourceTree = "<group>"; };
 		4C7A028A27A8351700F815FA /* Veil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Veil.swift; sourceTree = "<group>"; };
 		4C7A028C27A8386700F815FA /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
+		4C7A028E27A8475100F815FA /* Smart-Client-Fit--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Smart-Client-Fit--iOS--Info.plist"; sourceTree = "<group>"; };
 		4CCC21F927A3337F00D5232E /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		4CCC21FA27A3337F00D5232E /* Smart_Client_FitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Smart_Client_FitApp.swift; sourceTree = "<group>"; };
 		4CCC21FB27A3337F00D5232E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -152,6 +153,7 @@
 		4CCC21F227A3337F00D5232E = {
 			isa = PBXGroup;
 			children = (
+				4C7A028E27A8475100F815FA /* Smart-Client-Fit--iOS--Info.plist */,
 				4CCC21F727A3337F00D5232E /* Shared */,
 				4CCC220927A3339100D5232E /* macOS */,
 				4CCC221227A3339200D5232E /* Tests iOS */,
@@ -656,9 +658,9 @@
 				DEVELOPMENT_TEAM = Q7QLR2PH2X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Smart-Client-Fit--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -686,9 +688,9 @@
 				DEVELOPMENT_TEAM = Q7QLR2PH2X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Smart-Client-Fit--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
