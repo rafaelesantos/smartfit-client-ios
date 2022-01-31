@@ -45,3 +45,17 @@ struct UserHistoryAccess: Codable {
     }
 }
 
+extension UserHistoryAccess.Data.Attributes {
+    var locationName: String {
+        if let locations = try? DataManager.shared.get(on: .locations, Locations.self),
+           let data = locations.data,
+           let attributes = data.data,
+           let filtered = attributes.first(where: { $0.id == "\(self.locationId ?? -1)" }),
+           let attribute = filtered.attributes,
+           let name = attribute.name {
+            return name
+        }
+        
+        return ""
+    }
+}

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class LoginViewModel: ObservableObject {
     @Published var login: String = ""
@@ -17,7 +18,7 @@ class LoginViewModel: ObservableObject {
     
     init() {
         self.webservice = Webservice()
-        self.users = (try? DataManager.shared.get(on: .users, [User].self)) ?? []
+        self.users = ((try? DataManager.shared.get(on: .users, [User].self)) ?? []).reversed()
     }
     
     func postLogin(completion: @escaping () -> ()) {
@@ -28,7 +29,7 @@ class LoginViewModel: ObservableObject {
                         if let user = user {
                             if self.users.isEmpty == true { self.users = [user] }
                             else if self.users.contains(where: { $0.personal?.id == user.personal?.id }) == false { self.users.append(user) }
-                            try? self.users.save(on: .users)
+                            _ = try? self.users.save(on: .users)
                             completion()
                         }
                     }

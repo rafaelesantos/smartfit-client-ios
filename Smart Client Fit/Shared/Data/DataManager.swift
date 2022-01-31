@@ -20,7 +20,7 @@ class DataManager {
     }
     
     enum Reference {
-        case users, userPayment(Int), userHistoryAccess(Int), userSession, currentUser
+        case users, userPayment(Int), userHistoryAccess(Int), userSession, currentUser, locations, currentLocation
         var value: String {
             switch self {
             case .users: return "users"
@@ -28,6 +28,8 @@ class DataManager {
             case .userHistoryAccess(let id): return "user.history.\(id)"
             case .userSession: return "user.session"
             case .currentUser: return "user.current"
+            case .locations: return "locations"
+            case .currentLocation: return "user.current.location"
             }
         }
     }
@@ -35,6 +37,10 @@ class DataManager {
     @discardableResult
     func get<T>(on reference: DataManager.Reference, _ type: T.Type) throws -> T where T: Codable  {
         return try defaults.value(on: reference, type)
+    }
+    
+    func remove(on reference: DataManager.Reference) throws {
+        return try defaults.removeObject(forKey: reference.value)
     }
     
     func dropAll() throws {

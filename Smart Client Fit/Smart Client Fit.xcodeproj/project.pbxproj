@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C7A028527A787A100F815FA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A028427A787A100F815FA /* MapView.swift */; };
+		4C7A028727A78A1500F815FA /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A028627A78A1500F815FA /* MapAnnotationView.swift */; };
+		4C7A028927A78B4F00F815FA /* MapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A028827A78B4F00F815FA /* MapLocation.swift */; };
 		4CCC221427A3339200D5232E /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC221327A3339200D5232E /* Tests_iOS.swift */; };
 		4CCC221627A3339200D5232E /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC221527A3339200D5232E /* Tests_iOSLaunchTests.swift */; };
 		4CCC222027A3339200D5232E /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC221F27A3339200D5232E /* Tests_macOS.swift */; };
@@ -66,6 +69,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C7A028427A787A100F815FA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		4C7A028627A78A1500F815FA /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
+		4C7A028827A78B4F00F815FA /* MapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocation.swift; sourceTree = "<group>"; };
 		4CCC21F927A3337F00D5232E /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		4CCC21FA27A3337F00D5232E /* Smart_Client_FitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Smart_Client_FitApp.swift; sourceTree = "<group>"; };
 		4CCC21FB27A3337F00D5232E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -225,6 +231,8 @@
 				4CCC227527A3D42500D5232E /* UserHistoryAccessView.swift */,
 				4CCC227727A3D5B700D5232E /* UserPaymentsView.swift */,
 				4CCC227B27A441DC00D5232E /* CardView.swift */,
+				4C7A028427A787A100F815FA /* MapView.swift */,
+				4C7A028627A78A1500F815FA /* MapAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -250,6 +258,7 @@
 				4CCC226B27A3AB7C00D5232E /* UserHistoryAccess.swift */,
 				4CCC226D27A3AE8900D5232E /* Locations.swift */,
 				4CCC227D27A4423200D5232E /* Card.swift */,
+				4C7A028827A78B4F00F815FA /* MapLocation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -441,10 +450,12 @@
 				4CCC227227A3B1DF00D5232E /* UserInfoView.swift in Sources */,
 				4CCC227427A3CB6800D5232E /* UserViewModel.swift in Sources */,
 				4CCC224E27A35A0800D5232E /* HeaderToken.swift in Sources */,
+				4C7A028927A78B4F00F815FA /* MapLocation.swift in Sources */,
 				4CCC227027A3AF9700D5232E /* Date+Extensions.swift in Sources */,
 				4CCC224527A34E8D00D5232E /* TextFieldRowView.swift in Sources */,
 				4CCC222527A3339200D5232E /* Smart_Client_FitApp.swift in Sources */,
 				4CCC226E27A3AE8900D5232E /* Locations.swift in Sources */,
+				4C7A028527A787A100F815FA /* MapView.swift in Sources */,
 				4CCC225027A35B5C00D5232E /* Login.swift in Sources */,
 				4CCC226627A37EA900D5232E /* CoreDataManager.swift in Sources */,
 				4CCC222927A3339200D5232E /* Persistence.swift in Sources */,
@@ -456,6 +467,7 @@
 				4CCC226C27A3AB7C00D5232E /* UserHistoryAccess.swift in Sources */,
 				4CCC225527A365EF00D5232E /* LoginViewModel.swift in Sources */,
 				4CCC224027A347CE00D5232E /* LoginView.swift in Sources */,
+				4C7A028727A78A1500F815FA /* MapAnnotationView.swift in Sources */,
 				4CCC224927A3586000D5232E /* User.swift in Sources */,
 				4CCC227827A3D5B700D5232E /* UserPaymentsView.swift in Sources */,
 				4CCC225827A36E8900D5232E /* Application+Extension.swift in Sources */,

@@ -60,7 +60,7 @@ struct LoginView: View {
                         } else {
                             Group {
                                 ForEach(self.loginViewModel.users) { user in
-                                    NavigationLink(destination: UserView(user: user).navigationTitle(Text(user.presentedName))) {
+                                    NavigationLink(destination: UserView().navigationTitle(Text(user.presentedName))) {
                                         UserRowView(user: user)
                                             .padding(.all, 4)
                                     }

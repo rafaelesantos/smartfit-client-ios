@@ -58,6 +58,7 @@ struct UserPaymentView: View {
                     }
                 }
             }.foregroundColor(.primary)
+            
         }
     }
 }
