@@ -11,6 +11,7 @@ struct UserView: View {
     @ObservedObject private var userViewModel = UserViewModel()
     @State private var isPresented = false
     @State var isCardTapped: Bool = false
+    @State var periodHistoryAccess: Int = 90
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -28,11 +29,17 @@ struct UserView: View {
                            self.userViewModel.mapLocations.isEmpty == false,
                            (try? DataManager.shared.get(on: .currentLocation, MapLocation.self)) != nil {
                             Divider().padding(.vertical, 4)
+                            Picker("", selection: $periodHistoryAccess) {
+                                Text("3 MESES").tag(90)
+                                Text("2 MESES").tag(60)
+                                Text("1 MÊS").tag(30)
+                            }
+                            .pickerStyle(.segmented)
                             MapView(locations: self.userViewModel.mapLocations)
-                                .frame(height: 256)
-                                .cornerRadius(12)
-                                .padding(.bottom, 10)
-                            UserHistoryAccessView(userHistoryAccess: userHistoryAccess, locations: locationsDataAttributes)
+                                    .frame(height: 256)
+                                    .cornerRadius(12)
+                                    .padding(.bottom, 10)
+                            UserHistoryAccessView(userHistoryAccess: userHistoryAccess, locations: locationsDataAttributes, amount: self.periodHistoryAccess)
                         } else {
                             VStack {
                                 ProgressView()
@@ -85,6 +92,7 @@ struct UserView: View {
         }
         .onAppear {
             self.userViewModel.getUser()
+            self.userViewModel.getUserHistoryAccess(lastDays: self.periodHistoryAccess)
         }
         .onDisappear {
             try? DataManager.shared.remove(on: .currentUser)

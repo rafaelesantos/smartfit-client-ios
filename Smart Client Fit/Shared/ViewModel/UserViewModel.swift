@@ -22,27 +22,28 @@ class UserViewModel: ObservableObject {
         self.webservice = Webservice()
     }
     
-    func getUser() {
+    func getUser(lastDays: Int = 90) {
         if let secret = HeaderToken.defaultHeaderToken.pageProps?.session?.secret {
             self.webservice.getUser(secret: secret) { user in
                 if let user = user {
                     self.user = user
                     _ = try? user.save(on: .currentUser)
-                    self.getLocations(token: user.personal?.single_access_token ?? "")
-                    self.getUserHistoryAccess()
+                    self.getUserHistoryAccess(lastDays: lastDays)
                     self.getUserPayments()
                 }
             }
         }
     }
     
-    func getUserHistoryAccess() {
+    func getUserHistoryAccess(lastDays: Int, completion: (() -> ())? = nil) {
         if let secret = HeaderToken.defaultHeaderToken.pageProps?.session?.secret,
-           let userID = user?.personal?.id {
-            self.webservice.getUserHistoryAccess(secret: secret, userID: userID) { userHistoryAccess in
+           let userID = user?.personal?.id,
+           let userToken = user?.personal?.single_access_token {
+            self.webservice.getUserHistoryAccess(secret: secret, userID: userID, lastDays: lastDays) { userHistoryAccess in
                 if let userHistoryAccess = userHistoryAccess {
                     self.history = userHistoryAccess
                     _ = try? self.history?.save(on: .userHistoryAccess(userID))
+                    self.getLocations(token: userToken, completion: completion)
                 }
             }
         }
@@ -61,7 +62,7 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    func getLocations(token: String) {
+    func getLocations(token: String, completion: (() -> ())? = nil) {
         if let locations = try? DataManager.shared.get(on: .locations, Locations.self),
            let user = try? DataManager.shared.get(on: .currentUser, User.self),
            let currentLocationID = user.location?.smart_system_id,
@@ -76,7 +77,7 @@ class UserViewModel: ObservableObject {
                     self.currentLocation = MapLocation(hour: "", name: currentLocation.attributes?.name ?? "", address: currentLocation.attributes?.address ?? "", latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, count: 0)
                     _ = try? self.currentLocation?.save(on: .currentLocation)
                     _ = try? self.locations?.save(on: .locations)
-                    self.getMapLocations()
+                    self.getMapLocations(completion: completion)
                 }
             }
         } else if let secret = HeaderToken.defaultHeaderToken.pageProps?.session?.secret,
@@ -95,7 +96,7 @@ class UserViewModel: ObservableObject {
                             self.currentLocation = MapLocation(hour: "", name: currentLocation.attributes?.name ?? "", address: currentLocation.attributes?.address ?? "", latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, count: 0)
                             _ = try? self.currentLocation?.save(on: .currentLocation)
                             _ = try? self.locations?.save(on: .locations)
-                            self.getMapLocations()
+                            self.getMapLocations(completion: completion)
                         }
                     }
                 }
@@ -103,7 +104,7 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    func getMapLocations() {
+    func getMapLocations(completion: (() -> ())? = nil) {
         if let locations = try? DataManager.shared.get(on: .locations, Locations.self),
            let user = try? DataManager.shared.get(on: .currentUser, User.self),
            let userID = user.personal?.id,
@@ -119,11 +120,11 @@ class UserViewModel: ObservableObject {
                
                return MapLocation(hour: historyAccessData?.last?.attributes?.createdAt?.formatted(on: "yyyy-MM-dd-HH:mm", with: "HH:mm") ?? "", name: locationData.attributes?.name ?? "", address: (locationData.attributes?.address ?? "") + ", " + (locationData.attributes?.cityName ?? ""), latitude: 0, longitude: 0, count: historyAccessData?.count ?? 0)
            }) {
-            self.addressToCoordinate(mapLocationsData: locationDataAttributes, index: 0)
+            self.addressToCoordinate(mapLocationsData: locationDataAttributes, index: 0, completion: completion)
         }
     }
     
-    func addressToCoordinate(mapLocationsData: [MapLocation], index: Int) {
+    func addressToCoordinate(mapLocationsData: [MapLocation], index: Int, completion: (() -> ())? = nil) {
         if index < mapLocationsData.count {
             let geoCoder = CLGeocoder()
             geoCoder.geocodeAddressString(mapLocationsData[index].address) { (placemarks, error) in
@@ -138,6 +139,8 @@ class UserViewModel: ObservableObject {
                 }
                 self.addressToCoordinate(mapLocationsData: mapLocationsData, index: index + 1)
             }
+        } else {
+            completion?()
         }
     }
 }

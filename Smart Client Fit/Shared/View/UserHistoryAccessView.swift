@@ -11,10 +11,11 @@ struct UserHistoryAccessView: View {
     
     var userHistoryAccess: UserHistoryAccess
     var locations: [Locations.Data.DataAttributes]
+    var amount: Int
     
     var body: some View {
         GroupBox() {
-            DisclosureGroup("Acessos dos Últimos 90 dias") {
+            DisclosureGroup("Acessos dos últimos \(amount) dias") {
                 if let count = userHistoryAccess.data?.count, count > 0 {
                     ForEach(0 ..< count, id: \.self) { item in
                         Divider().padding(.vertical, 2)

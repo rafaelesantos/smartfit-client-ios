@@ -105,8 +105,8 @@ class Webservice {
         }.resume()
     }
     
-    func getUserHistoryAccess(secret: String, userID: Int, completion: @escaping (UserHistoryAccess?) -> ()) {
-        guard let url = URL(string: ("https://espacodocliente.smartfit.com.br/api/v1/user/\(userID)/accesses?locale=pt-BR&start_at=\(Date.getDateFor(days: -90)?.formatted(with: "yyyy-MM-dd") ?? "")&end_at=\(Date().formatted(with: "yyyy-MM-dd"))").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { fatalError("Invalid URL") }
+    func getUserHistoryAccess(secret: String, userID: Int, lastDays: Int, completion: @escaping (UserHistoryAccess?) -> ()) {
+        guard let url = URL(string: ("https://espacodocliente.smartfit.com.br/api/v1/user/\(userID)/accesses?locale=pt-BR&start_at=\(Date.getDateFor(days: -lastDays)?.formatted(with: "yyyy-MM-dd") ?? "")&end_at=\(Date().formatted(with: "yyyy-MM-dd"))").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { fatalError("Invalid URL") }
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
