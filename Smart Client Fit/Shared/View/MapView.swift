@@ -21,8 +21,8 @@ struct MapView: View {
     }()
     
     var locations: [MapLocation]
-    @State var name: String = "Selecione uma academia"
-    @State var hour: String = "Horário"
+    @State var name: String = ""
+    @State var hour: String = ""
     @State var count: String = ""
     
     // MARK: - BODY
@@ -30,44 +30,45 @@ struct MapView: View {
     var body: some View {
         Map(coordinateRegion: $region, annotationItems: locations, annotationContent: { item in
             MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)) {
-                MapAnnotationView(hour: item.hour, locationName: item.name).onTapGesture {
-                    self.name = item.name
-                    self.hour = item.hour
-                    self.count = "\(item.count)"
-                }
+                MapAnnotationView(hour: item.hour, locationName: item.name)
+                    .onTapGesture {
+                        self.name = item.name
+                        self.hour = item.hour
+                        self.count = "\(item.count)"
+                    }
             }
         })
             .overlay(
-                HStack(alignment: .center, spacing: 12) {
-                    Image("compass")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 48, height: 48, alignment: .center)
-                    
-                    VStack(alignment: .leading, spacing: 3) {
-                        HStack {
-                            Spacer()
-                            Text("\(hour)")
-                                .font(.system(size: 15))
-                                .fontWeight(.bold)
-                                .foregroundColor(.accentColor)
-                        }
+                self.name.isEmpty == false ?
+                VStack {
+                    HStack(alignment: .center, spacing: 12) {
+                        Image("compass")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 48, height: 48, alignment: .center)
                         
-                        Divider()
-                        
-                        HStack {
-                            Spacer()
-                            Text("\(name)")
-                                .font(.system(size: 15))
-                                .foregroundColor(.white)
-                            Text("\(count)")
-                                .font(.system(size: 15))
-                                .fontWeight(.bold)
-                                .foregroundColor(.accentColor)
+                        VStack(alignment: .leading, spacing: 3) {
+                            HStack {
+                                Spacer()
+                                Text("Último Acesso")
+                                    .font(.system(size: 15))
+                                Text("\(hour)")
+                                    .font(.system(size: 17))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.accentColor)
+                            }
                             
+                            Divider()
+                            
+                            HStack {
+                                Spacer()
+                                Text("\(name)")
+                                    .font(.system(size: 15))
+                                    .bold()
+                                    .foregroundColor(.white)
+                            }
                         }
                     }
-                } //: HSTACK
                     .padding(.vertical, 12)
                     .padding(.horizontal, 16)
                     .background(
@@ -76,6 +77,25 @@ struct MapView: View {
                             .opacity(0.6)
                     )
                     .padding()
+                    
+                    Spacer()
+                    
+                    HStack(alignment: .center, spacing: 5) {
+                        Text("\(count)")
+                            .font(.system(size: 17))
+                            .fontWeight(.bold)
+                            .foregroundColor(.accentColor)
+                        Text("ACESSOS")
+                            .font(.system(size: 12))
+                            .foregroundColor(.white)
+                    }
+                    .padding(.all, 10)
+                    .background(
+                        Color.black
+                            .cornerRadius(8)
+                            .opacity(0.6)
+                    )
+                }.padding(.bottom, 12) : nil
                 , alignment: .top
             )
     }

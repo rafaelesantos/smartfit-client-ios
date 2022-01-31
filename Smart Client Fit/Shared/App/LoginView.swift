@@ -66,11 +66,12 @@ struct LoginView: View {
                             Group {
                                 ForEach(self.loginViewModel.users) { user in
                                     UserRowView(user: user)
-                                        .padding(.all, 4)
                                         .onTapGesture {
                                             self.loginViewModel.login = user.login
                                             self.loginViewModel.password = user.password
                                         }
+                                        .padding(.all, 4)
+                                        
                                     
                                 }
                             }

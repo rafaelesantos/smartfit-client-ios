@@ -117,7 +117,7 @@ class UserViewModel: ObservableObject {
                    return "\(historyData.attributes?.locationId ?? -1)" == locationData.id
                })
                
-               return MapLocation(hour: historyAccessData?.first?.attributes?.createdAt?.formatted(on: "yyyy-MM-dd-HH:mm", with: "HH:mm") ?? "", name: locationData.attributes?.name ?? "", address: (locationData.attributes?.address ?? "") + ", " + (locationData.attributes?.cityName ?? ""), latitude: 0, longitude: 0, count: historyAccessData?.count ?? 0)
+               return MapLocation(hour: historyAccessData?.last?.attributes?.createdAt?.formatted(on: "yyyy-MM-dd-HH:mm", with: "HH:mm") ?? "", name: locationData.attributes?.name ?? "", address: (locationData.attributes?.address ?? "") + ", " + (locationData.attributes?.cityName ?? ""), latitude: 0, longitude: 0, count: historyAccessData?.count ?? 0)
            }) {
             self.addressToCoordinate(mapLocationsData: locationDataAttributes, index: 0)
         }
